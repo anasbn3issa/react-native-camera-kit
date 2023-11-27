@@ -184,7 +184,7 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
                     if (zoomMode == "off") return true
                     val cameraControl = camera?.cameraControl ?: return true
                     val zoom = camera?.cameraInfo?.zoomState?.value?.zoomRatio ?: return true
-                    val scaleFactor = detector?.scaleFactor ?: return true
+                    val scaleFactor = detector.scaleFactor
                     val scale = zoom * scaleFactor
                     cameraControl.setZoomRatio(scale)
                     return true
