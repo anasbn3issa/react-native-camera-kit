@@ -56,7 +56,7 @@ export default class CameraScreen extends Component {
         return !!(this.props.allowCaptureRetake && !_.isUndefined(this.state.imageCaptured));
     }
     renderFlashButton() {
-        return (!this.isCaptureRetakeMode() && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetFlash()}>
+        return (!this.isCaptureRetakeMode() && this.state.flashData.image &&  (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetFlash()}>
           <Image style={[{ flex: 1, justifyContent: 'center' }, this.props.torchImageStyle]} source={this.state.flashData.image} resizeMode="contain"/>
         </TouchableOpacity>));
     }
@@ -66,7 +66,7 @@ export default class CameraScreen extends Component {
         </TouchableOpacity>));
     }
     renderSwitchCameraButton() {
-        return (this.props.cameraFlipImage &&
+        return (this.props.cameraFlipImage && this.props.cameraFlipImage &&
             !this.isCaptureRetakeMode() && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSwitchCameraPressed()}>
           <Image style={{ flex: 1, justifyContent: 'center' }} source={this.props.cameraFlipImage} resizeMode="contain"/>
         </TouchableOpacity>));
@@ -80,7 +80,7 @@ export default class CameraScreen extends Component {
     }
     renderCamera() {
         return (<View style={styles.cameraContainer}>
-        {this.isCaptureRetakeMode() ? (<Image style={{ flex: 1, justifyContent: 'flex-end' }} source={{ uri: this.state.imageCaptured.uri }}/>) : (<Camera ref={(cam) => (this.camera = cam)} style={{ flex: 1, justifyContent: 'flex-end' }} cameraType={this.state.cameraType} flashMode={this.state.flashData.mode} torchMode={this.state.torchMode ? 'on' : 'off'} focusMode={this.props.focusMode} zoomMode={this.props.zoomMode} ratioOverlay={this.state.ratios[this.state.ratioArrayPosition]} showFrame={this.props.showFrame} scanBarcode={this.props.scanBarcode} laserColor={this.props.laserColor} frameColor={this.props.frameColor} onReadCode={this.props.onReadCode}/>)}
+        {this.isCaptureRetakeMode() && this.state.imageCaptured.uri ? (<Image style={{ flex: 1, justifyContent: 'flex-end' }} source={{ uri: this.state.imageCaptured.uri }}/>) : (<Camera ref={(cam) => (this.camera = cam)} style={{ flex: 1, justifyContent: 'flex-end' }} cameraType={this.state.cameraType} flashMode={this.state.flashData.mode} torchMode={this.state.torchMode ? 'on' : 'off'} focusMode={this.props.focusMode} zoomMode={this.props.zoomMode} ratioOverlay={this.state.ratios[this.state.ratioArrayPosition]} showFrame={this.props.showFrame} scanBarcode={this.props.scanBarcode} laserColor={this.props.laserColor} frameColor={this.props.frameColor} onReadCode={this.props.onReadCode}/>)}
       </View>);
     }
     numberOfImagesTaken() {
