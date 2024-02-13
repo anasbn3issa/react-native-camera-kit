@@ -62,7 +62,7 @@ export default class CameraScreen extends Component {
     }
     renderTorchButton() {
         return (!this.isCaptureRetakeMode() && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetTorch()}>
-          <Image style={[{ flex: 1, justifyContent: 'center' }, this.props.torchImageStyle]} source={this.state.torchMode ? this.props.torchOnImage : this.props.torchOffImage} resizeMode="contain"/>
+          <Image style={[{ flex: 1, justifyContent: 'flex-end' }, this.props.torchImageStyle]} source={this.state.torchMode ? this.props.torchOnImage : this.props.torchOffImage} resizeMode="contain"/>
         </TouchableOpacity>));
     }
     renderSwitchCameraButton() {
@@ -151,8 +151,8 @@ export default class CameraScreen extends Component {
     renderBottomButtons() {
         return (!this.props.hideControls && (<SafeAreaView style={[styles.bottomButtons, { backgroundColor: '#ffffff00' }]}>
           {this.renderBottomButton('left')}
-          {this.state.captureImages.length > 0  && this.renderBottomButton('right')}
           {this.renderCaptureButton()}
+          {this.state.captureImages.length > 0  && this.renderBottomButton('right')}
         </SafeAreaView>));
     }
     onSwitchCameraPressed() {
