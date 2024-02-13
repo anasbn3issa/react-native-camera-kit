@@ -68,7 +68,7 @@ export default class CameraScreen extends Component {
     renderSwitchCameraButton() {
         return (this.props.cameraFlipImage && this.props.cameraFlipImage &&
             !this.isCaptureRetakeMode() && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSwitchCameraPressed()}>
-          <Image style={{ flex: 1, justifyContent: 'center' }} source={this.props.cameraFlipImage} resizeMode="contain"/>
+          <Image style={{ flex: 1, justifyContent: 'flex-end' }} source={this.props.cameraFlipImage} resizeMode="contain"/>
         </TouchableOpacity>));
     }
     renderTopButtons() {
