@@ -61,7 +61,7 @@ export default class CameraScreen extends Component {
         </TouchableOpacity>));
     }
     renderTorchButton() {
-        return (!this.isCaptureRetakeMode() && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetTorch()}>
+        return (!this.isCaptureRetakeMode() && this.props.torchOnImage && this.props.torchOffImage && (<TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetTorch()}>
           <Image style={[{ flex: 1, justifyContent: 'flex-end' }, this.props.torchImageStyle]} source={this.state.torchMode ? this.props.torchOnImage : this.props.torchOffImage} resizeMode="contain"/>
         </TouchableOpacity>));
     }
@@ -75,7 +75,7 @@ export default class CameraScreen extends Component {
         return (!this.props.hideControls && (<SafeAreaView style={styles.topButtons}>
           {this.renderFlashButton()}
           {this.renderSwitchCameraButton()}
-          {this.renderTorchButton()}
+          {/* {this.renderTorchButton()} */}
         </SafeAreaView>));
     }
     renderCamera() {

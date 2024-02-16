@@ -122,7 +122,7 @@ export default class CameraScreen extends Component<Props, State> {
 
   renderFlashButton() {
     return (
-      !this.isCaptureRetakeMode() && (
+      !this.isCaptureRetakeMode() && this.state.flashData.image && (
         <TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetFlash()}>
           <Image
             style={[{ flex: 1, justifyContent: 'center' }, this.props.torchImageStyle]}
@@ -136,7 +136,7 @@ export default class CameraScreen extends Component<Props, State> {
 
   renderTorchButton() {
     return (
-      !this.isCaptureRetakeMode() && (
+      !this.isCaptureRetakeMode() && this.props.torchOnImage && this.props.torchOffImage && (
         <TouchableOpacity style={{ paddingHorizontal: 15 }} onPress={() => this.onSetTorch()}>
           <Image
             style={[{ flex: 1, justifyContent: 'center' }, this.props.torchImageStyle]}
@@ -178,7 +178,7 @@ export default class CameraScreen extends Component<Props, State> {
   renderCamera() {
     return (
       <View style={styles.cameraContainer}>
-        {this.isCaptureRetakeMode() ? (
+        {this.isCaptureRetakeMode() && this.state.imageCaptured.uri ? (
           <Image style={{ flex: 1, justifyContent: 'flex-end' }} source={{ uri: this.state.imageCaptured.uri }} />
         ) : (
           <Camera
